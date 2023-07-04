@@ -40,7 +40,7 @@ class SamedayGetLockersResponse implements SamedayResponseInterface
             return;
         }
 
-        foreach ($json['data'] as $locker) {
+        foreach ($json as $locker) {
             $this->lockers[] = new LockerObject(
                 $locker['lockerId'],
                 $locker['name'],
@@ -55,7 +55,7 @@ class SamedayGetLockersResponse implements SamedayResponseInterface
                 $locker['supportedPayment'],
                 $locker['clientVisible'],
                 array_map(
-                    static function ($entry) {
+                    function ($entry) {
                         return new BoxObject(
                             $entry['size'],
                             $entry['number']
@@ -64,7 +64,7 @@ class SamedayGetLockersResponse implements SamedayResponseInterface
                     $locker['availableBoxes']
                 ),
                 array_map(
-                    static function ($entry) {
+                    function ($entry) {
                         return new ScheduleObject(
                             $entry['day'],
                             $entry['openingHour'],

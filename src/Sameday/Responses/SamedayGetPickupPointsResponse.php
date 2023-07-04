@@ -55,14 +55,14 @@ class SamedayGetPickupPointsResponse implements SamedayPaginatedResponseInterfac
                 new CityObject(
                     $data['city']['id'],
                     $data['city']['name'],
-                    isset($data['city']['samedayDeliveryAgency']) ? $data['city']['samedayDeliveryAgency'] : '',
-                    isset($data['city']['samedayPickupAgency']) ? $data['city']['samedayPickupAgency'] : '',
+                    $data['city']['samedayDeliveryAgency'],
+                    $data['city']['samedayPickupAgency'],
                     $data['city']['extraKM']
                 ),
                 $data['address'],
                 $data['defaultPickupPoint'],
                 array_map(
-                    static function ($entry) {
+                    function ($entry) {
                         return new ContactPersonObject(
                             $entry['id'],
                             $entry['name'],

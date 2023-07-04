@@ -34,7 +34,7 @@ class SamedayGetLockersRequest implements SamedayRequestInterface
         return new SamedayRequest(
             true,
             'GET',
-            '/api/client/lockers',
+            '/api/locker/lockers',
             count($this->lockerIds) > 0 ? ['lockersList' => implode(',', $this->lockerIds)] : []
         );
     }
