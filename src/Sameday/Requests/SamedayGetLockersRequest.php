@@ -17,13 +17,25 @@ class SamedayGetLockersRequest implements SamedayRequestInterface
     protected $lockerIds;
 
     /**
+     * @var string
+     */
+    protected $countryCode;
+
+    /**
+     * @var string
+     */
+    protected $locale;
+
+    /**
      * SamedayGetLockersRequest constructor.
      *
      * @param array $lockerIds
      */
-    public function __construct(array $lockerIds = [])
+    public function __construct(array $lockerIds = [], string $countryCode = 'RO', string $locale = 'ro')
     {
         $this->lockerIds = $lockerIds;
+        $this->countryCode = $countryCode;
+        $this->locale = $locale;
     }
 
     /**
@@ -34,7 +46,7 @@ class SamedayGetLockersRequest implements SamedayRequestInterface
         return new SamedayRequest(
             true,
             'GET',
-            '/api/locker/lockers',
+            "/api/locker/lockers?_format=json&countryCode={$this->countryCode}&_locale={$this->locale}",
             count($this->lockerIds) > 0 ? ['lockersList' => implode(',', $this->lockerIds)] : []
         );
     }
