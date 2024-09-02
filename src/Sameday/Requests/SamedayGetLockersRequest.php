@@ -15,7 +15,15 @@ class SamedayGetLockersRequest implements SamedayRequestInterface
      * @var array
      */
     protected $lockerIds;
+
+    /**
+     * @var string
+     */
     protected $countryCode;
+
+    /**
+     * @var string
+     */
     protected $locale;
 
     /**
@@ -23,7 +31,7 @@ class SamedayGetLockersRequest implements SamedayRequestInterface
      *
      * @param array $lockerIds
      */
-    public function __construct(array $lockerIds = [], $countryCode = 'RO', $locale = 'ro')
+    public function __construct(array $lockerIds = [], string $countryCode = 'RO', string $locale = 'ro')
     {
         $this->lockerIds = $lockerIds;
         $this->countryCode = $countryCode;
