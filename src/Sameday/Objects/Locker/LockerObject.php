@@ -2,6 +2,9 @@
 
 namespace Sameday\Objects\Locker;
 
+use Sameday\Objects\BoxObject;
+use Sameday\Objects\ScheduleObject;
+use Sameday\Objects\Traits\LocationObjectTrait;
 use Sameday\Objects\Traits\SamedayObjectIdTrait;
 use Sameday\Objects\Traits\SamedayObjectNameTrait;
 
@@ -14,56 +17,7 @@ class LockerObject
 {
     use SamedayObjectIdTrait;
     use SamedayObjectNameTrait;
-
-    /**
-     * @var string
-     */
-    protected $county;
-
-    /**
-     * @var string
-     */
-    protected $city;
-
-    /**
-     * @var string
-     */
-    protected $address;
-
-    /**
-     * @var string
-     */
-    protected $postalCode;
-
-    /**
-     * @var string
-     */
-    protected $lat;
-
-    /**
-     * @var string
-     */
-    protected $long;
-
-    /**
-     * @var string
-     */
-    protected $phone;
-
-    /**
-     * @var string
-     */
-    protected $email;
-
-    /**
-     * @var int 0 = doesn't support payment, 1 = supports payment
-     */
-    protected $supportedPayment;
-
-    /**
-     * @var int 0 = not visible, 1 = visible
-     */
-    protected $clientVisible;
+    use LocationObjectTrait;
 
     /**
      * @var BoxObject[]
@@ -71,9 +25,18 @@ class LockerObject
     protected $boxes;
 
     /**
-     * @var ScheduleObject[]
+     * 0 = doesn't support payment, 1 = supports payment
+     *
+     * @var int $supportedPayment
      */
-    protected $schedule;
+    protected $supportedPayment;
+
+    /**
+     * 0 = not visible, 1 = visible
+     *
+     * @var int
+     */
+    protected $clientVisible;
 
     /**
      * LockerObject constructor.
@@ -88,8 +51,6 @@ class LockerObject
      * @param string $long
      * @param string $phone
      * @param string $email
-     * @param int $supportedPayment
-     * @param int $clientVisible
      * @param BoxObject[] $boxes
      * @param ScheduleObject[] $schedule
      */
@@ -119,90 +80,10 @@ class LockerObject
         $this->long = $long;
         $this->phone = $phone;
         $this->email = $email;
-        $this->supportedPayment = $supportedPayment;
-        $this->clientVisible = $clientVisible;
         $this->boxes = $boxes;
         $this->schedule = $schedule;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCounty()
-    {
-        return $this->county;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPostalCode()
-    {
-        return $this->postalCode;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLat()
-    {
-        return $this->lat;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLong()
-    {
-        return $this->long;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSupportedPayment()
-    {
-        return $this->supportedPayment;
-    }
-
-    /**
-     * @return int
-     */
-    public function getClientVisible()
-    {
-        return $this->clientVisible;
+        $this->supportedPayment = $supportedPayment;
+        $this->clientVisible = $clientVisible;
     }
 
     /**
@@ -214,10 +95,61 @@ class LockerObject
     }
 
     /**
-     * @return ScheduleObject[]
+     * @return string
      */
-    public function getSchedule()
+    public function getAddress()
     {
-        return $this->schedule;
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     * @return LockerObject
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSupportedPayment()
+    {
+        return $this->supportedPayment;
+    }
+
+    /**
+     * @param int $supportedPayment
+     *
+     * @return LockerObject
+     */
+    public function setSupportedPayment($supportedPayment)
+    {
+        $this->supportedPayment = $supportedPayment;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getClientVisible()
+    {
+        return $this->clientVisible;
+    }
+
+    /**
+     * @param int $clientVisible
+     *
+     * @return LockerObject
+     */
+    public function setClientVisible($clientVisible)
+    {
+        $this->clientVisible = $clientVisible;
+
+        return $this;
     }
 }
