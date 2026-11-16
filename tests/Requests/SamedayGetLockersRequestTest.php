@@ -38,6 +38,8 @@ class SamedayGetLockersRequestTest extends TestCase
         $this->assertEquals('/api/client/lockers', $samedayRequest->getEndpoint());
         $this->assertEquals(
             [
+                'countryCode' => 'RO',
+                '_locale' => 'ro',
                 'page' => 1,
                 'countPerPage' => 50,
             ],
@@ -57,6 +59,8 @@ class SamedayGetLockersRequestTest extends TestCase
         $this->assertEquals(
             [
                 'lockersList' => '1001,2001',
+                'countryCode' => 'RO',
+                '_locale' => 'ro',
                 'page' => 1,
                 'countPerPage' => 50,
             ],
